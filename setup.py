@@ -11,12 +11,12 @@ import fnmatch
 import importlib
 from datetime import datetime as dt
 from git import Repo
-c = Repo(os.path.dirname(__file__)).commit()
-__version__ = (dt.fromtimestamp(c.committed_date).strftime('%Y%m%d%H%M%S') + '-' + c.hexsha[:10])
-print __version__
 
-# __version__ = '53eb0b09e1'
-# print __version__
+base_version = "0.0.1"
+
+c = Repo(os.path.dirname(__file__)).commit()
+__version__ = (base_version + '+' + 'xguse.fork')
+print __version__
 
 def do_setup():
     setup(name='pybioclim',
