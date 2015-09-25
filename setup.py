@@ -9,12 +9,14 @@ import doctest
 import os
 import fnmatch
 import importlib
-import time
+from datetime import datetime as dt
 from git import Repo
-head = Repo(os.path.dirname(__file__)).commits()[0]
-__version__ = (time.strftime('%Y%m%d%H%M%S', head.committed_date) + '-' +
-               head.id_abbrev)
+c = Repo(os.path.dirname(__file__)).commit()
+__version__ = (dt.fromtimestamp(c.committed_date).strftime('%Y%m%d%H%M%S') + '-' + c.hexsha[:10])
 print __version__
+
+# __version__ = '53eb0b09e1'
+# print __version__
 
 def do_setup():
     setup(name='pybioclim',
